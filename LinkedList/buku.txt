@@ -1,2 +1,3 @@
 BK101,Aritificial Intelligence,Stuart Russell
 BK012,Alone,Ariana
+BK013,Algorithms,Robert Sedgewick

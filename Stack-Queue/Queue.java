@@ -9,7 +9,7 @@ public class Queue {
     public void enqueue(String kode, String nama, int total) {
 
         if (size == max) {
-            System.out.println("Antrian sudah penuh (maksimal 5 pelanggan)");
+            System.out.println("Antrian penuh! Maksimal 5 pelanggan.");
             return;
         }
 
@@ -23,7 +23,8 @@ public class Queue {
         }
 
         size++;
-        System.out.println("Data pelanggan ditambahkan ke antrian!");
+
+        System.out.println("Data pelanggan berhasil ditambahkan ke antrian.");
     }
 
     // Menghapus pelanggan dari antrian
@@ -42,10 +43,11 @@ public class Queue {
         }
 
         size--;
+
         return temp;
     }
 
-    // Menampilkan isi antrian
+    // Menampilkan antrian
     public void displayQueue() {
 
         if (front == null) {
@@ -55,12 +57,15 @@ public class Queue {
 
         Node temp = front;
 
-        System.out.println("=== DAFTAR ANTRIAN ===");
+        System.out.println("\n=== DAFTAR ANTRIAN ===");
 
         while (temp != null) {
-            System.out.println(temp.kode + " - " + temp.nama + " - Rp" + temp.total);
+
+            System.out.println(temp.kode + " - "
+                    + temp.nama + " - Rp"
+                    + String.format("%,d", temp.total).replace(",", "."));
+
             temp = temp.next;
         }
     }
-
 }

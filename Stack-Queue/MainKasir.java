@@ -2,9 +2,65 @@ import java.util.Scanner;
 
 public class MainKasir {
 
-    public static void main(String[] args) {
+    static Scanner input = new Scanner(System.in);
 
-        Scanner input = new Scanner(System.in);
+    // Validasi nomor antrian (A022)
+    public static String inputKode() {
+
+        String kode;
+
+        while (true) {
+
+            System.out.print("Masukkan Nomor Antrian (contoh: A022): ");
+            kode = input.nextLine();
+
+            if (kode.matches("[A-Z]{1}[0-9]{3}")) {
+                return kode;
+            }
+
+            System.out.println("Format salah! Harus 1 huruf dan 3 angka (A022)");
+        }
+    }
+
+    // Validasi nama pelanggan
+    public static String inputNama() {
+
+        String nama;
+
+        while (true) {
+
+            System.out.print("Masukkan Nama Pelanggan: ");
+            nama = input.nextLine();
+
+            if (nama.matches("[a-zA-Z ]+")) {
+                return nama;
+            }
+
+            System.out.println("Nama hanya boleh huruf.");
+        }
+    }
+
+    // Validasi total belanja
+    public static int inputTotal() {
+
+        int total;
+
+        while (true) {
+
+            System.out.print("Masukkan Total Belanja (angka saja): ");
+
+            if (input.hasNextInt()) {
+                total = input.nextInt();
+                input.nextLine();
+                return total;
+            }
+
+            System.out.println("Input harus berupa angka!");
+            input.next();
+        }
+    }
+
+    public static void main(String[] args) {
 
         Queue antrian = new Queue();
         Stack riwayat = new Stack();
@@ -28,15 +84,9 @@ public class MainKasir {
 
                 case 1:
 
-                    System.out.print("Masukkan Nomor Antrian: ");
-                    String kode = input.nextLine();
-
-                    System.out.print("Masukkan Nama Pelanggan: ");
-                    String nama = input.nextLine();
-
-                    System.out.print("Masukkan Total Belanja: ");
-                    int total = input.nextInt();
-                    input.nextLine();
+                    String kode = inputKode();
+                    String nama = inputNama();
+                    int total = inputTotal();
 
                     antrian.enqueue(kode, nama, total);
 
@@ -55,7 +105,6 @@ public class MainKasir {
                         riwayat.push(pelanggan);
 
                         System.out.println("Transaksi disimpan ke riwayat.");
-
                     }
 
                     break;
@@ -77,11 +126,10 @@ public class MainKasir {
 
                 default:
 
-                    System.out.println("Pilihan tidak valid.");
+                    System.out.println("Menu tidak valid.");
             }
 
         } while (pilihan != 5);
 
     }
-
 }
